@@ -5,7 +5,9 @@
  * Description: function takes a format str which specifies the type
  * of the argument to be printed
  *
- * @format: pointer to a list of types of arguments passed
+ * @format: string format to be printed
+ * @args: va_list, arguments passed from printf
+ * @_bytes: int pointer to the number of bytes written to stdout
  */
 void print_all(const char *format, va_list args, unsigned int *_bytes)
 {
@@ -25,6 +27,11 @@ void print_all(const char *format, va_list args, unsigned int *_bytes)
 			specifier = get_specifier(format[i + 1]);
 			if (specifier)
 			{
+				/**
+				 * check if the specifier following the %
+				 * is valid, then call the correct function
+				 * associated with the type defined by specifier
+				 */
 				++i;
 				switch (specifier)
 				{
@@ -41,14 +48,22 @@ void print_all(const char *format, va_list args, unsigned int *_bytes)
 					break;
 				}
 				case STRING:{
-					puts(va_arg(args, char *s));
+					print_string(va_arg(args, char *s));
 					break;
 				}
 				}
+				i++; /* increment again and continue */
+				continue;
 
 			}
-		}
 
+		}
+		/**
+		 * can print char at this point, means format[i+1]
+		 * not a valid specifier, therefore if(specifier) is skipped
+		 */
+		_putchar(va_arg(args, int));
+		++*_bytes;
 		i++;
 	}
 

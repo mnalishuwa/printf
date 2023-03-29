@@ -24,4 +24,6 @@ int _printf(const char *format, ...)
 	print_all(format, args, &nbytes);
 
 	va_end(args);
+
+	return ((int) nbytes);
 }

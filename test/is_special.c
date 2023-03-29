@@ -1,12 +1,12 @@
 #include "main.h"
-#define BACKSLASH 8
+
 /**
  * isbackslash - check is a char is a backslash
- * Description: check if character is a back slash
+ * Description: check if character is a backslash
  *
  * @c: char arg
  *
- * Return: 0 if char is backslash, a different in otherwise
+ * Return: 0 if char is backslash, <  0 or > 0 otherwise
  */
 int _isbackslash(char c)
 {
@@ -19,7 +19,7 @@ int _isbackslash(char c)
  *
  * @c: char arg
  *
- * Return: 0 if char is format specifier char, a different in otherwise
+ * Return: 0 if char is %, < 0 or > 0 otherwise
  */
 int _is_fspec(char c)
 {

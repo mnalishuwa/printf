@@ -3,6 +3,10 @@
 
 #define STDOUT_FILE_DESC 1
 #define NBYTES 1
+#define ZERO 48
+#define NEGATIVE_SIGN 45
+#define LINE_FEED 10
+#define BACKSLASH 8
 
 #include <unistd.h>
 #include <stdarg.h>
@@ -45,7 +49,7 @@ typedef struct fmt_spec format_spec;
  */
 typedef enum
 {
-	BACKSLASH,
+	BACK_SLASH,
 	DBLQUOTE,
 	SINGQUOTE,
 	PERCENTS
@@ -91,7 +95,7 @@ void _puts(char *str);
 int _printf(const char *format, ...);
 
 /* print_strings - prints a string to stdout */
-void print_strings(char *s);
+void print_string(char *s);
 
 /* get_specifier - return a valid type base on the specifier passed */
 unsigned int get_specifier(char c);

@@ -1,8 +1,4 @@
 #include "main.h"
-#include <math.h>
-#define ZERO 48
-#define NEGATIVE_SIGN 45
-#define LINE_FEED 10
 
 /**
  * print_number - prints a number to stdout
