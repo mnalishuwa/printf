@@ -74,8 +74,6 @@ typedef struct nspec_chars special_chars;
 /* _putchar - write 1 byte to stdout */
 int _putchar(char c);
 
-/* _strcmp - compare 2 strings */
-
 /* _isbackslash - check if char is backslash */
 int _isbackslash(char c);
 
@@ -89,7 +87,7 @@ void print_number(int n);
 int _pow_recursion(int x, int y);
 
 /* _puts - prints a string to stdout */
-void _puts(char *str);
+void _puts(const char *str);
 
 /* _printf - print f replica */
 int _printf(const char *format, ...);

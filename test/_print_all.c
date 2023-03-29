@@ -15,7 +15,7 @@ void print_all(const char *format, va_list args, unsigned int *_bytes)
 
 	if (format && !args)
 	{
-		puts(format);
+		_puts(format);
 		return;
 	}
 
@@ -48,7 +48,7 @@ void print_all(const char *format, va_list args, unsigned int *_bytes)
 					break;
 				}
 				case STRING:{
-					print_string(va_arg(args, char *s));
+					print_string(va_arg(args, char *));
 					break;
 				}
 				}

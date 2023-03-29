@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * isbackslash - check is a char is a backslash
+ * _isbackslash - check is a char is a backslash
  * Description: check if character is a backslash
  *
  * @c: char arg

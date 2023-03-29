@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_strings - prints strings to stdout
+ * print_string - prints strings to stdout
  * Description: takes a string and prints it to stdout
  *
  * @s: str args
