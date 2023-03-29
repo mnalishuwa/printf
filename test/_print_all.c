@@ -22,7 +22,7 @@ void print_all(const char *format, va_list args, unsigned int *_bytes)
 	i = 0;
 	while (format && format[i] != '\0')
 	{
-		if (_is_fspec(format[i]) && format[i + 1])
+		if (!_is_fspec(format[i]) && format[i + 1])
 		{
 			specifier = get_specifier(format[i + 1]);
 			if (specifier)
