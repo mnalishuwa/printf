@@ -2,5 +2,4 @@
 *.out
 *.bak
 *#
-_putchar.c
 main.c

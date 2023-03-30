@@ -9,15 +9,15 @@
  * Return: void
  */
 
-void print_number(int n)
+void print_number(int n, int *count)
 {
 	int temp, _digits, _remainder, result;
 
 	temp = n;
 	if (n == 0)
-		_putchar(ZERO);
+		_putchar(ZERO, count);
 	if (n < 0)
-		_putchar(NEGATIVE_SIGN);
+		_putchar(NEGATIVE_SIGN, count);
 	/* get the number of digits in the number */
 	for (_digits = 0; (n < 0) ? (temp < 0) : (temp > 0); _digits++)
 		temp = temp / 10;
@@ -30,7 +30,7 @@ void print_number(int n)
 
 		if (n < 0)
 			n = -1 * n;
-		_putchar(n + ZERO);
+		_putchar(n + ZERO, count);
 		n = _remainder;
 	}
 }

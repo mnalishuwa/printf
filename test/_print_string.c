@@ -9,11 +9,11 @@
  * Return: void
  */
 
-void print_string(char *s)
+void print_string(char *s, int *count)
 {
 	if (!s)
-		_puts("(null)\0");
+		_puts("(null)", count);
 	else
-		_puts(s);
+		_puts(s, count);
 
 }

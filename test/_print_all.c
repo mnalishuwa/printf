@@ -9,13 +9,13 @@
  * @args: va_list, arguments passed from printf
  * @_bytes: int pointer to the number of bytes written to stdout
  */
-void print_all(const char *format, va_list args, unsigned int *_bytes)
+void print_all(const char *format, va_list args, int *_bytes)
 {
-	unsigned int i, specifier;
+	int i, specifier;
 
 	if (format && !args)
 	{
-		_puts(format);
+		_puts((char *) format, _bytes);
 		return;
 	}
 
@@ -36,19 +36,19 @@ void print_all(const char *format, va_list args, unsigned int *_bytes)
 				switch (specifier)
 				{
 				case CHAR:{
-					_putchar(va_arg(args, int));
+					_putchar(va_arg(args, int), _bytes);
 					break;
 				}
 				case INT:{
-					print_number(va_arg(args, int));
+					print_number(va_arg(args, int), _bytes);
 					break;
 				}
 				case DECIMAL:{
-					print_number(va_arg(args, int));
+					print_number(va_arg(args, int), _bytes);
 					break;
 				}
 				case STRING:{
-					print_string(va_arg(args, char *));
+					print_string(va_arg(args, char *), _bytes);
 					break;
 				}
 				}
@@ -62,8 +62,7 @@ void print_all(const char *format, va_list args, unsigned int *_bytes)
 		 * can print char at this point, means format[i+1]
 		 * not a valid specifier, therefore if(specifier) is skipped
 		 */
-		_putchar(va_arg(args, int));
-		++*_bytes;
+		_putchar(va_arg(args, int), _bytes);
 		i++;
 	}
 

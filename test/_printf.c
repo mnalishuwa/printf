@@ -13,11 +13,9 @@
 
 int _printf(const char *format, ...)
 {
-	unsigned int nbytes;
+	int nbytes = 0;
 
 	va_list args;
-
-	nbytes = 0;
 
 	va_start(args, format);
 
@@ -25,5 +23,5 @@ int _printf(const char *format, ...)
 
 	va_end(args);
 
-	return ((int) nbytes);
+	return (nbytes);
 }

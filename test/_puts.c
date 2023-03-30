@@ -10,10 +10,12 @@
  * Return: void
  */
 
-void _puts(const char *str)
+void _puts(char *str, int *count)
 {
 	int char_index;
 
 	for (char_index = 0; *(str + char_index) != '\0'; char_index++)
-		_putchar(*(str + char_index));
+	{
+		_putchar(*(str + char_index), count);
+	}
 }
