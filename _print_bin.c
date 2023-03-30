@@ -26,6 +26,6 @@ void print_bin(unsigned int n, int *count)
 	}
 
 	n = n / 2;
-	print_bin((remainder + ZERO), count);
+	print_bin(n, count);
 	_putchar((remainder + ZERO), count);
 }
