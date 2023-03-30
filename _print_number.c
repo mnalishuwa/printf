@@ -5,6 +5,7 @@
  * Description: receives and int n, and prints it to stdout using _putchar
  *
  * @n: interger to be printed to stdout
+ * @count: pointer to number of characters printed by _printf
  *
  * Return: void
  */

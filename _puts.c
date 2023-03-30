@@ -6,6 +6,7 @@
  * stdout one byte at a time.
  *
  * @str: string input
+ * @count: pointer to number of chars printed by _printf
  *
  * Return: void
  */

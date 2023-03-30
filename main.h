@@ -27,7 +27,7 @@ typedef enum
 } types;
 
 /**
- * struct fmt_spec - Struct format
+ * fmt_spec - Struct format
  *
  * @specifier: char, corresponding to a valid type
  * @_type: unsigned int representing a type

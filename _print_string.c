@@ -5,6 +5,7 @@
  * Description: takes a string and prints it to stdout
  *
  * @s: str args
+ * @count: pointer to number of chars printed by printf
  *
  * Return: void
  */
