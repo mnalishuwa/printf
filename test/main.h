@@ -72,7 +72,7 @@ struct nspec_chars
 typedef struct nspec_chars special_chars;
 
 /* _putchar - write 1 byte to stdout */
-int _putchar(char c);
+int _putchar(char c, int *count);
 
 /* _isbackslash - check if char is backslash */
 int _isbackslash(char c);
@@ -81,24 +81,24 @@ int _isbackslash(char c);
 int _is_fspec(char c);
 
 /* print_number - takes an int and prints it to stdout */
-void print_number(int n);
+void print_number(int n, int *count);
 
 /* _pow_recursion - returns x raised to the power y */
 int _pow_recursion(int x, int y);
 
 /* _puts - prints a string to stdout */
-void _puts(const char *str);
+void _puts(char *str, int *count);
 
 /* _printf - print f replica */
 int _printf(const char *format, ...);
 
 /* print_strings - prints a string to stdout */
-void print_string(char *s);
+void print_string(char *s, int *count);
 
 /* get_specifier - return a valid type base on the specifier passed */
 unsigned int get_specifier(char c);
 
 /* print_all - print any type of string and additional args passed */
-void print_all(const char *str, va_list args, unsigned int *_bytes);
+void print_all(const char *str, va_list args, int *_bytes);
 
 #endif

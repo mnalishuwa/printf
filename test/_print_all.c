@@ -62,7 +62,7 @@ void print_all(const char *format, va_list args, int *_bytes)
 		 * can print char at this point, means format[i+1]
 		 * not a valid specifier, therefore if(specifier) is skipped
 		 */
-		_putchar(va_arg(args, int), _bytes);
+		_putchar(format[i], _bytes);
 		i++;
 	}
 
