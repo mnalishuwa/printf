@@ -17,7 +17,17 @@ int _printf(const char *format, ...)
 
 	va_list args;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(args, format);
+
+	if (*format == '\0')
+	{
+		_puts("", &nbytes);
+		va_end(args);
+		return (nbytes);
+	}
 
 	print_all(format, args, &nbytes);
 
