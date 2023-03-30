@@ -22,6 +22,7 @@ typedef enum
 	CHAR,
 	INT,
 	DECIMAL,
+	UINT,
 	FLOAT,
 	STRING
 } types;
@@ -100,5 +101,8 @@ unsigned int get_specifier(char c);
 
 /* print_all - print any type of string and additional args passed */
 void print_all(const char *str, va_list args, int *_bytes);
+
+/* print_bin - prints the binary reprentation of positive int */
+void print_bin(unsigned int n, int *count);
 
 #endif
