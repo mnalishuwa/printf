@@ -49,6 +49,7 @@ void print_all(const char *format, va_list args, int *_bytes)
 				}
 				case UINT:{
 					print_bin(va_arg(args, unsigned int), _bytes);
+					break;
 				}
 				case STRING:{
 					print_string(va_arg(args, char *), _bytes);
