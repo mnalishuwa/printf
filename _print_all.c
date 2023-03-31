@@ -47,6 +47,10 @@ void print_all(const char *format, va_list args, int *_bytes)
 					print_number(va_arg(args, int), _bytes);
 					break;
 				}
+				case UINT:{
+					print_bin(va_arg(args, unsigned int), _bytes);
+					break;
+				}
 				case STRING:{
 					print_string(va_arg(args, char *), _bytes);
 					break;
@@ -84,6 +88,7 @@ unsigned int get_specifier(char c)
 		{'i', INT},
 		{'d', DECIMAL},
 		{'s', STRING},
+		{'b', UINT},
 		{0, NON_TYPE}
 	};
 
