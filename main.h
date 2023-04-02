@@ -1,117 +1,108 @@
 #ifndef MAIN_H
 #define MAIN_H
-#include <stdarg.h>
-#include <stdio.h>
+
+#define STDOUT_FILE_DESC 1
+#define NBYTES 1
+#define ZERO 48
+#define NEGATIVE_SIGN 45
+#define LINE_FEED 10
+#define BACKSLASH 8
+
 #include <unistd.h>
-
-#define UNUSED(x) (void)(x)
-#define BUFF_SIZE 1024
-
-/* FLAGS */
-#define F_MINUS 1
-#define F_PLUS 2
-#define F_ZERO 4
-#define F_HASH 8
-#define F_SPACE 16
-
-/* SIZES */
-#define S_LONG 2
-#define S_SHORT 1
+#include <stdarg.h>
+#include <stdlib.h>
 
 /**
- * struct fmt - Struct op
- *
- * @fmt: The format.
- * @fn: The function associated.
+ * types  -  define int for valid C types corresponding to format specifiers
+ * Description: enum to hold ints representing types
  */
-struct fmt
+typedef enum
 {
-	char fmt;
-	int (*fn)(va_list, char[], int, int, int, int);
+	NON_TYPE,
+	CHAR,
+	INT,
+	DECIMAL,
+	UINT,
+	FLOAT,
+	STRING
+} types;
+
+/**
+ * fmt_spec - Struct format
+ *
+ * @specifier: char, corresponding to a valid type
+ * @_type: unsigned int representing a type
+ *
+ * Description: struct to hold char specifying type and int for the type
+ */
+struct fmt_spec
+{
+	char specifier;
+	types _type;
 };
 
+typedef struct fmt_spec format_spec;
 
 /**
- * typedef struct fmt fmt_t - Struct op
- *
- * @fmt: The format.
- * @fm_t: The function associated.
+ * nspecials - enum to hold numbers for special characters
+ * Description: Enum to map numbers onto naturally special
+ * characters for the print function.
  */
-typedef struct fmt fmt_t;
+typedef enum
+{
+	BACK_SLASH,
+	DBLQUOTE,
+	SINGQUOTE,
+	PERCENTS
+} nspecials;
 
+/**
+ * nspec_chars - struct made of constant number and representative char
+ *
+ * @symbol: char, representing the special character
+ * @_special: int
+ *
+ * Description: Map of special chars to constant ints
+ */
+struct nspec_chars
+{
+	char symbol;
+	nspecials _special;
+};
+
+typedef struct nspec_chars special_chars;
+
+/* _putchar - write 1 byte to stdout */
+int _putchar(char c, int *count);
+
+/* _isbackslash - check if char is backslash */
+int _isbackslash(char c);
+
+/* _ispecifier - check if char is specifier indicator */
+int _is_fspec(char c);
+
+/* print_number - takes an int and prints it to stdout */
+void print_number(int n, int *count);
+
+/* _pow_recursion - returns x raised to the power y */
+int _pow_recursion(int x, int y);
+
+/* _puts - prints a string to stdout */
+void _puts(char *str, int *count);
+
+/* _printf - print f replica */
 int _printf(const char *format, ...);
-int handle_print(const char *fmt, int *i,
-va_list list, char buffer[], int flags, int width, int precision, int size);
 
-/****************** FUNCTIONS ******************/
+/* print_strings - prints a string to stdout */
+void print_string(char *s, int *count);
 
-/* Funtions to print chars and strings */
-int print_char(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_string(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_percent(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
+/* get_specifier - return a valid type base on the specifier passed */
+unsigned int get_specifier(char c);
 
-/* Functions to print numbers */
-int print_int(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_binary(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_unsigned(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_octal(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_hexadecimal(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_hexa_upper(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
+/* print_all - print any type of string and additional args passed */
+void print_all(const char *str, va_list args, int *_bytes);
 
-int print_hexa(va_list types, char map_to[],
-char buffer[], int flags, char flag_ch, int width, int precision, int size);
-
-/* Function to print non printable characters */
-int print_non_printable(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-
-/* Funcion to print memory address */
-int print_pointer(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-
-/* Funciotns to handle other specifiers */
-int get_flags(const char *format, int *i);
-int get_width(const char *format, int *i, va_list list);
-int get_precision(const char *format, int *i, va_list list);
-int get_size(const char *format, int *i);
-
-/*Function to print string in reverse*/
-int print_reverse(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-
-/*Function to print a string in rot 13*/
-int print_rot13string(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-
-/* width handler */
-int handle_write_char(char c, char buffer[],
-	int flags, int width, int precision, int size);
-int write_number(int is_positive, int ind, char buffer[],
-	int flags, int width, int precision, int size);
-int write_num(int ind, char bff[], int flags, int width, int precision,
-	int length, char padd, char extra_c);
-int write_pointer(char buffer[], int ind, int length,
-	int width, int flags, char padd, char extra_c, int padd_start);
-
-int write_unsgnd(int is_negative, int ind,
-char buffer[],
-	int flags, int width, int precision, int size);
-
-/****************** UTILS ******************/
-int is_printable(char);
-int append_hexa_code(char, char[], int);
-int is_digit(char);
-
-long int convert_size_number(long int num, int size);
-long int convert_size_unsgnd(unsigned long int num, int size);
+/* print_bin - prints the binary reprentation of positive int */
+void print_bin(unsigned int n, int *count);
 
 #endif
